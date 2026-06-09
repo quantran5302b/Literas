@@ -155,6 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 346158924}
   currentPos: {x: 0, y: 0}
+  startPos: {x: 0, y: 0}
+  cell: {fileID: 0}
+  color: 1
 --- !u!212 &16465536
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -777,8 +780,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 3, y: 3}
   grid: {fileID: 346158924}
-  color: 0
   LevelManager: {fileID: 730890111}
+--- !u!1 &1213143866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213143868}
+  - component: {fileID: 1213143867}
+  m_Layer: 0
+  m_Name: Cell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1213143867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213143866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0caee7ffea7bb2c45a94d149c0005b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorData: {fileID: 0}
+--- !u!4 &1213143868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213143866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2066831154}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768566443
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +859,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 2, y: 2}
   grid: {fileID: 346158924}
-  color: 1
 --- !u!212 &1768566445
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -890,8 +937,9 @@ GameObject:
   - component: {fileID: 2066831154}
   - component: {fileID: 2066831153}
   - component: {fileID: 2066831155}
+  - component: {fileID: 2066831156}
   m_Layer: 0
-  m_Name: CELL
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,12 +1005,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066831152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.39, y: 1.18, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1213143868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2066831155
 MonoBehaviour:
@@ -978,7 +1026,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   grid: {fileID: 346158924}
+--- !u!114 &2066831156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066831152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2513e88a52c22864dafd48fc11b131d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   color: 0
+  spriteRenderer: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -987,7 +1048,7 @@ SceneRoots:
   - {fileID: 346158926}
   - {fileID: 16465537}
   - {fileID: 1768566446}
-  - {fileID: 2066831154}
   - {fileID: 364731573}
   - {fileID: 1016572324}
   - {fileID: 730890112}
+  - {fileID: 1213143868}

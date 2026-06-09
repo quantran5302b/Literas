@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
         if (!grid.IsValid(targetPos)) return;
 
          cell = grid.GetCell(targetPos);
-
         if (cell != null && !cell.CanMove(this)) return;
 
         currentPos = targetPos;
@@ -56,5 +55,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
         transform.position = cell.gameObject.transform.position;
+    }
+    private void ChangeColorCell(Cell cell)
+    { 
+        
     }
 }

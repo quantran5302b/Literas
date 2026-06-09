@@ -7,6 +7,10 @@ public class ColorData : MonoBehaviour
     [SerializeField]private EnumColor color;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    private void Awake()
+    {
+        this.LoadSpriteRenderer();
+    }
     private void Start()
     {
         if(color == EnumColor.None)
@@ -23,16 +27,13 @@ public class ColorData : MonoBehaviour
         {
             case EnumColor.Red:
                 spriteRenderer.color = Color.red;
-                color = EnumColor.Red;
                 break;
 
             case EnumColor.Yellow:
                 spriteRenderer.color = Color.yellow;
-                color = EnumColor.Yellow;
                 break;
             case EnumColor.Black:
                 spriteRenderer.color = Color.black;
-                color = EnumColor.Black;
                 break;
         }
     }
@@ -40,4 +41,10 @@ public class ColorData : MonoBehaviour
     {
         return color;
     }
+    private void LoadSpriteRenderer()
+    {
+        if (this.spriteRenderer != null) return;
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
 }

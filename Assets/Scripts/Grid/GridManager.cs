@@ -24,7 +24,7 @@ public class GridManager : MonoBehaviour
             {
 
                GameObject obj =  Instantiate(cellColor, new Vector3(x * cellSize - offsetX,y * cellSize - offsetY,0), Quaternion.identity,transform.root);
-                Cell cell = obj.GetComponent<Cell>();
+                Cell cell = obj.GetComponentInChildren<Cell>();
                 cell.grid = this;
                 cell.gridPos = new Vector2Int(x, y);
                 cells[x, y] = cell;

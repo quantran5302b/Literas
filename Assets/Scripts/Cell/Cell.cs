@@ -7,30 +7,25 @@ public class Cell : MonoBehaviour
     public Vector2Int gridPos;
     public GridManager grid;
 
-    [SerializeField] EnumColor color;
+    private CellCtrl cellCtrl;
 
-    public EnumColor Color { get => color;}
+    public CellCtrl CellCtrl { get => cellCtrl;}
 
+    private void Awake()
+    {
+        this.LoadCellCtrl();
+    }
     protected virtual void Start()
     {
        
-        //grid.RegisterCell(this, gridPos);
-        SnapToGrid();
-    }
-    void SnapToGrid()
-    {
-        //this.gridPos = grid.GridToWorld(gridPos);
-        //this.gridPos = new Vector2Int(x, y);
     }
 
     public virtual bool CanMove(PlayerController player)
     {
-        if (color == player.Color)
+        if (CheckCanMove(player))
         {
-            Debug.Log("dung");
             return true;
         }
-        Debug.Log("sai");
         return false;
     }
 
@@ -38,9 +33,29 @@ public class Cell : MonoBehaviour
     {
 
     }
-    private void ChangeColor(PlayerController player)
+
+    private void LoadCellCtrl()
     {
-        //if
+        if (this.cellCtrl != null) return;
+        this.cellCtrl = GetComponentInParent<CellCtrl>();  
+
     }
+    //private void ChangColor(EnumColor color)
+    //{
+    //    cellCtrl.ColorData.SetColor(color);
+    //}
+    private bool CheckCanMove(PlayerController player)
+    {
+        if (cellCtrl.ColorData.GetColor() == EnumColor.Black || player.Color == EnumColor.Black)
+        {
+            return true;
+        }
+        if (cellCtrl.ColorData.GetColor() == player.Color)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
 }

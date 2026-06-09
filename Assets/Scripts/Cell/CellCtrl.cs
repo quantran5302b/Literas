@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CellCtrl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private ColorData colorData;
 
-    // Update is called once per frame
-    void Update()
+    public ColorData ColorData { get => colorData;}
+
+    private void Awake()
     {
-        
+        this.LoadColorData();
+    }
+    private void LoadColorData()
+    {
+        if (this.colorData != null) return;
+        this.colorData = GetComponentInChildren<ColorData>();
     }
 }
