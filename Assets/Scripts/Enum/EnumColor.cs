@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EnumColor 
 {
-    None,
+    Gray,
     Red,
     Yellow,
     Black

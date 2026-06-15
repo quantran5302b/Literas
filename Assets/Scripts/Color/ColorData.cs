@@ -13,7 +13,7 @@ public class ColorData : MonoBehaviour
     }
     private void Start()
     {
-        if(color == EnumColor.None)
+        if(color == EnumColor.Gray)
         {
             SetColor(EnumColor.Black);
         }

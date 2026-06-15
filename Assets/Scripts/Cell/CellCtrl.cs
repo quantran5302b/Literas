@@ -8,13 +8,22 @@ public class CellCtrl : MonoBehaviour
 
     public ColorData ColorData { get => colorData;}
 
+    [SerializeField] private CellModel cellModel;
+    public CellModel CellModel { get => cellModel; }
+
     private void Awake()
     {
         this.LoadColorData();
+        this.LoadCellModel();
     }
     private void LoadColorData()
     {
-        if (this.colorData != null) return;
+        if (colorData) return;
         this.colorData = GetComponentInChildren<ColorData>();
+    }
+    private void LoadCellModel()
+    {
+        if (cellModel) return;
+        this.cellModel = GetComponentInChildren<CellModel>();
     }
 }

@@ -9,7 +9,7 @@ public class Cell : MonoBehaviour
 
     private CellCtrl cellCtrl;
 
-    public CellCtrl CellCtrl { get => cellCtrl;}
+    public CellCtrl CellCtrl { get => cellCtrl; }
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class Cell : MonoBehaviour
     }
     protected virtual void Start()
     {
-       
+
     }
 
     public virtual bool CanMove(PlayerController player)
@@ -37,20 +37,17 @@ public class Cell : MonoBehaviour
     private void LoadCellCtrl()
     {
         if (this.cellCtrl != null) return;
-        this.cellCtrl = GetComponentInParent<CellCtrl>();  
+        this.cellCtrl = GetComponentInParent<CellCtrl>();
 
     }
-    //private void ChangColor(EnumColor color)
-    //{
-    //    cellCtrl.ColorData.SetColor(color);
-    //}
     private bool CheckCanMove(PlayerController player)
     {
-        if (cellCtrl.ColorData.GetColor() == EnumColor.Black || player.Color == EnumColor.Black)
+        PlayerCtrl playerCtrl = GetComponentInParent<PlayerCtrl>();
+        if (cellCtrl.CellModel.Color == EnumColor.Black)
         {
             return true;
         }
-        if (cellCtrl.ColorData.GetColor() == player.Color)
+        if (playerCtrl.PlayerModel.ContainsColor(cellCtrl.ColorData.GetColor()))
         {
             return true;
         }

@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
 
     public Cell cell;
 
-    [SerializeField]private EnumColor color;
+    //[SerializeField]private EnumColor color;
 
-    public EnumColor Color { get => color;}
+    //public EnumColor Color { get => color;}
 
     private void Start()
     {
