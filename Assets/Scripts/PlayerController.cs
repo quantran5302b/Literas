@@ -34,10 +34,8 @@ public class PlayerController : MonoBehaviour
         Vector2Int targetPos = currentPos + dir;
 
         if (!grid.IsValid(targetPos)) return;
-
          cell = grid.GetCell(targetPos);
         if (cell != null && !cell.CanMove(this)) return;
-
         currentPos = targetPos;
    
         SnapCell(currentPos);
@@ -60,4 +58,5 @@ public class PlayerController : MonoBehaviour
     { 
         
     }
+
 }

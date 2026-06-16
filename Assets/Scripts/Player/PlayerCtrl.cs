@@ -17,12 +17,12 @@ public class PlayerCtrl : MonoBehaviour
     }
     private void LoadPlayerModel()
     {
-        if (!this.playerModel) return;
+        if (this.playerModel) return;
         this.playerModel = GetComponentInChildren<PlayerModel>();
     }
     private void LoadPlayerController()
     {
-        if (!this.playerController) return;
+        if (this.playerController) return;
         this.playerController = GetComponentInChildren<PlayerController>();
     }
 }

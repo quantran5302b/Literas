@@ -241,11 +241,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model_1: {fileID: 2089386849}
-  model_2: {fileID: 0}
-  model_3: {fileID: 0}
-  borderColor: 0
+  model_2: {fileID: 1689136549}
+  model_3: {fileID: 1201993629}
+  borderColor: 1
   middleColor: 0
-  centerColor: 0
+  centerColor: 1
   playerCtrl: {fileID: 0}
 --- !u!1 &346158923
 GameObject:
@@ -849,6 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 3, y: 3}
   grid: {fileID: 346158924}
+  cellCtrl: {fileID: 0}
   LevelManager: {fileID: 730890111}
 --- !u!1 &1201993627
 GameObject:
@@ -1097,6 +1098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 2, y: 2}
   grid: {fileID: 346158924}
+  cellCtrl: {fileID: 0}
 --- !u!212 &1768566445
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1175,7 +1177,6 @@ GameObject:
   - component: {fileID: 2066831154}
   - component: {fileID: 2066831153}
   - component: {fileID: 2066831155}
-  - component: {fileID: 2066831156}
   - component: {fileID: 2066831157}
   m_Layer: 0
   m_Name: Model
@@ -1225,7 +1226,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -220722672, guid: 06a43ce54fa0d7c4ca7cc753c808919f, type: 3}
   m_Color: {r: 0.26415092, g: 0.17792808, b: 0.17792808, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1246,7 +1247,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1213143868}
@@ -1265,20 +1266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   grid: {fileID: 346158924}
---- !u!114 &2066831156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066831152}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2513e88a52c22864dafd48fc11b131d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 3
-  spriteRenderer: {fileID: 0}
+  cellCtrl: {fileID: 0}
 --- !u!114 &2066831157
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,19 +21,18 @@ public class PlayerModel : MonoBehaviour
     private void Awake()
     {
         this.LoadPlayerCtrl();
-        this.ChangeColor();
+        this.SetColorModel();
     }
     private void LoadPlayerCtrl()
     {
         if (this.playerCtrl != null) return;
         this.playerCtrl = GetComponentInParent<PlayerCtrl>();
     }
-    public void ChangeColor()
+    public void SetColorModel()
     {
-        ////if()
         model_1.color = ColorHelper.ToUnityColor(BorderColor);
-        //model_2.color = ColorHelper.ToUnityColor(MiddleColor);
-        //model_3.color = ColorHelper.ToUnityColor(CenterColor);
+        model_2.color = ColorHelper.ToUnityColor(MiddleColor);
+        model_3.color = ColorHelper.ToUnityColor(CenterColor);
     }
 
     public bool ContainsColor(EnumColor color)
@@ -42,5 +41,6 @@ public class PlayerModel : MonoBehaviour
                color == middleColor || 
                color == centerColor;
     }
+    //private void SetColor
 
 }

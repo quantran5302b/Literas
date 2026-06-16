@@ -13,10 +13,10 @@ public class CellModel : MonoBehaviour
     private void Awake()
     {
         this.LoadModel();
-        ChangeColor();
+        SetColor(color);
 
     }
-    private void ChangeColor()
+    public void SetColor(EnumColor color)
     {
         model.color = ColorHelper.ToUnityColor(color);
     }

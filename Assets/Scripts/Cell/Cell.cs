@@ -7,7 +7,7 @@ public class Cell : MonoBehaviour
     public Vector2Int gridPos;
     public GridManager grid;
 
-    private CellCtrl cellCtrl;
+    [SerializeField] private CellCtrl cellCtrl;
 
     public CellCtrl CellCtrl { get => cellCtrl; }
 
@@ -42,12 +42,12 @@ public class Cell : MonoBehaviour
     }
     private bool CheckCanMove(PlayerController player)
     {
-        PlayerCtrl playerCtrl = GetComponentInParent<PlayerCtrl>();
-        if (cellCtrl.CellModel.Color == EnumColor.Black)
+        PlayerCtrl playerCtrl = player.GetComponentInParent<PlayerCtrl>();
+        if (cellCtrl.CellModel.Color == EnumColor.Gray)
         {
             return true;
         }
-        if (playerCtrl.PlayerModel.ContainsColor(cellCtrl.ColorData.GetColor()))
+        if (playerCtrl.PlayerModel.ContainsColor(cellCtrl.CellModel.Color))
         {
             return true;
         }
