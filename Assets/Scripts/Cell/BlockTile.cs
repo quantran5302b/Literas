@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockTile : Cell
+public class BlockTile : CellRule
 {
     public override bool CanMove(PlayerController player)
     {

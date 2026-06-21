@@ -24,5 +24,5 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (this.playerController) return;
         this.playerController = GetComponentInChildren<PlayerController>();
-    }
+    } 
 }

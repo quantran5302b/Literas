@@ -16,8 +16,13 @@ public class CellModel : MonoBehaviour
         SetColor(color);
 
     }
+    private void Update()
+    {
+        SetColor(color);
+    }
     public void SetColor(EnumColor color)
     {
+        this.color = color;
         model.color = ColorHelper.ToUnityColor(color);
     }
     private void LoadModel()

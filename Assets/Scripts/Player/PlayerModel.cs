@@ -41,6 +41,11 @@ public class PlayerModel : MonoBehaviour
                color == middleColor || 
                color == centerColor;
     }
-    //private void SetColor
+    public void ChangeColorCell(CellCtrl cell,EnumColor color)
+    {
+        if (color == EnumColor.Gray) return;
+        CellModel model = cell.CellModel;
+        model.SetColor(color);
+    }
 
 }

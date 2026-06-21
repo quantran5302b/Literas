@@ -11,7 +11,8 @@ public class ColorHelper
             EnumColor.Red => Color.red,
             EnumColor.Yellow => Color.yellow,
             EnumColor.Black => Color.black,
-            EnumColor.Gray => new Color32(199, 207, 204, 255)
+            EnumColor.Gray => new Color32(199, 207, 204, 255),
+            _ => throw new System.NotImplementedException()
         };
     }
 }

@@ -5,20 +5,23 @@ public class PlayerController : MonoBehaviour
     public GridManager grid;
 
     public Vector2Int currentPos;
+    public Vector2Int nextPos;
 
-    [SerializeField]
-    private Vector2Int startPos;
+    public CellCtrl cellCtrl;
 
-    public Cell cell;
 
-    //[SerializeField]private EnumColor color;
+    [SerializeField] private PlayerCtrl playerCtrl;
 
-    //public EnumColor Color { get => color;}
+    public PlayerCtrl PlayerCtrl { get => playerCtrl; }
 
+    private void Awake()
+    {
+        this.LoadPlayerCtrl();
+    }
     private void Start()
     {
-        //UpdatePosition();
-        this.SnapCell(startPos);
+        //currentPos = startPos;
+        this.SnapCell(currentPos);
     }
 
     private void Update()
@@ -34,29 +37,41 @@ public class PlayerController : MonoBehaviour
         Vector2Int targetPos = currentPos + dir;
 
         if (!grid.IsValid(targetPos)) return;
-         cell = grid.GetCell(targetPos);
-        if (cell != null && !cell.CanMove(this)) return;
-        currentPos = targetPos;
+         cellCtrl = grid.GetCell(targetPos);
+        CellRule cellRule = cellCtrl.CellRule;
+        if (cellRule != null && !cellRule.CanMove(this)) return;
+        //nextPos = targetPos;
    
-        SnapCell(currentPos);
-
-        if (cell != null)
-            cell.OnEnter(this);
+        SnapCell(targetPos);
+       
+        if (cellRule != null)
+            cellRule.OnEnter(this);
     }
 
     private void SnapCell(Vector2Int pos)
     {
-        cell = grid.GetCell(pos);
-        if (cell == null)
+        nextPos = pos;
+        cellCtrl = grid.GetCell(pos);
+        if (cellCtrl == null)
         {
             Debug.LogError("Cell null");
             return;
         }
-        transform.position = cell.gameObject.transform.position;
+        transform.position = cellCtrl.gameObject.transform.position;
+        PlayerCtrl.PlayerModel.ChangeColorCell(cellCtrl, PlayerCtrl.PlayerModel.CenterColor);
+        cellCtrl.CellRule.SetOccupiedBy(PlayerCtrl);
+
+        if (nextPos == currentPos) return;
+        CellCtrl cellcu = grid.GetCell(currentPos);
+        cellcu.CellRule.SetOccupiedBy(null);
+        currentPos = nextPos;
+
     }
-    private void ChangeColorCell(Cell cell)
-    { 
-        
+    private void LoadPlayerCtrl()
+    {
+        if (this.playerCtrl != null) return;
+        this.playerCtrl = GetComponentInParent<PlayerCtrl>();
     }
+    
 
 }

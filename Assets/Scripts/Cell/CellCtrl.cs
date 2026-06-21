@@ -11,10 +11,13 @@ public class CellCtrl : MonoBehaviour
     [SerializeField] private CellModel cellModel;
     public CellModel CellModel { get => cellModel; }
 
+    [SerializeField] private CellRule cellRule;
+    public CellRule CellRule { get => cellRule; }
     private void Awake()
     {
         this.LoadColorData();
         this.LoadCellModel();
+        this.LoadCellRule();
     }
     private void LoadColorData()
     {
@@ -26,4 +29,10 @@ public class CellCtrl : MonoBehaviour
         if (cellModel) return;
         this.cellModel = GetComponentInChildren<CellModel>();
     }
+    private void LoadCellRule()
+    {
+        if (cellRule) return;
+        this.cellRule = GetComponentInChildren<CellRule>();
+    }
+
 }

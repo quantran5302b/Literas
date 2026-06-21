@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalTile : Cell
+public class GoalTile : CellRule
 {
     public LevelManager LevelManager;
 

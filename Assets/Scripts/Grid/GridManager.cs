@@ -6,7 +6,7 @@ using static UnityEditor.PlayerSettings;
 
 public class GridManager : MonoBehaviour
 {
-    public Cell[,] cells;
+    public CellCtrl[,] cells;
     public int width ;
     public int height ;
 
@@ -15,7 +15,7 @@ public class GridManager : MonoBehaviour
 
     void Awake()
     {
-        cells = new Cell[width, height];
+        cells = new CellCtrl[width, height];
         float offsetX = (width - 1) * cellSize * 0.5f;
         float offsetY = (height - 1) * cellSize * 0.5f;
         for (int x = 0; x < width; x++)
@@ -24,10 +24,10 @@ public class GridManager : MonoBehaviour
             {
 
                GameObject obj =  Instantiate(cellColor, new Vector3(x * cellSize - offsetX,y * cellSize - offsetY,0), Quaternion.identity,transform.root);
-                Cell cell = obj.GetComponentInChildren<Cell>();
+                CellRule cell = obj.GetComponentInChildren<CellRule>();
                 cell.grid = this;
                 cell.gridPos = new Vector2Int(x, y);
-                cells[x, y] = cell;
+                cells[x, y] = cell.CellCtrl;
             }
         }
     }
@@ -42,7 +42,7 @@ public class GridManager : MonoBehaviour
                pos.y >= 0 && pos.y < height;
     }
 
-    public Cell GetCell(Vector2Int pos) // infor cell
+    public CellCtrl GetCell(Vector2Int pos) // infor cell
     {
         if (!IsValid(pos)) return null;
         return cells[pos.x, pos.y];
