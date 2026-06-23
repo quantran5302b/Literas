@@ -14,14 +14,20 @@ public class PlayerController : MonoBehaviour
 
     public PlayerCtrl PlayerCtrl { get => playerCtrl; }
 
+
+    private bool isUndoing;
+
     private void Awake()
     {
         this.LoadPlayerCtrl();
     }
     private void Start()
     {
-        //currentPos = startPos;
-        this.SnapCell(currentPos);
+        isUndoing = true;
+
+        SnapCell(currentPos);
+
+        isUndoing = false;
     }
 
     private void Update()
@@ -30,6 +36,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S)) Move(Vector2Int.down);
         if (Input.GetKeyDown(KeyCode.A)) Move(Vector2Int.left);
         if (Input.GetKeyDown(KeyCode.D)) Move(Vector2Int.right);
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Undo();
+        }
     }
 
     void Move(Vector2Int dir)
@@ -57,6 +67,15 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("Cell null");
             return;
         }
+        if (!isUndoing)
+        {
+            MoveData data =
+                new MoveData(this, currentPos);
+
+            UndoManager.Instance.SaveMove(data);
+        }
+
+
         transform.position = cellCtrl.gameObject.transform.position;
         PlayerCtrl.PlayerModel.ChangeColorCell(cellCtrl, PlayerCtrl.PlayerModel.CenterColor);
         cellCtrl.CellRule.SetOccupiedBy(PlayerCtrl);
@@ -66,12 +85,28 @@ public class PlayerController : MonoBehaviour
         cellcu.CellRule.SetOccupiedBy(null);
         currentPos = nextPos;
 
+        
+
     }
     private void LoadPlayerCtrl()
     {
         if (this.playerCtrl != null) return;
         this.playerCtrl = GetComponentInParent<PlayerCtrl>();
     }
-    
+
+    private void Undo()
+    {
+        MoveData data = UndoManager.Instance.Undo();
+
+        if (data == null)
+            return;
+
+        isUndoing = true;
+
+        data.player.SnapCell(data.previousPos);
+
+        isUndoing = false;
+    }
+
 
 }

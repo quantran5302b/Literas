@@ -64,7 +64,7 @@ public class CellRule : MonoBehaviour
     public void SetOccupiedBy(PlayerCtrl player)
     {
         OccupiedBy = player;
-        Debug.Log(player);
+        //Debug.Log(player);
     }
 
 }
