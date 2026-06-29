@@ -11,16 +11,13 @@ public class CellRule : MonoBehaviour
 
     [SerializeField] private CellCtrl cellCtrl;
     public CellCtrl CellCtrl { get => cellCtrl; }
-
-    [SerializeField] private PlayerCtrl OccupiedBy;
+  
+    [SerializeField] private PlayerCtrl occupiedBy;
+    public PlayerCtrl OccupiedBy { get => occupiedBy; }
 
     private void Awake()
     {
         this.LoadCellCtrl();
-    }
-    protected virtual void Start()
-    {
-
     }
 
     public virtual bool CanMove(PlayerController player)
@@ -45,7 +42,7 @@ public class CellRule : MonoBehaviour
     }
     private bool CheckCanMove(PlayerController player)
     {
-        if (OccupiedBy !=null )
+        if (OccupiedBy != null )
         {
             return false;
         }
@@ -63,7 +60,7 @@ public class CellRule : MonoBehaviour
 
     public void SetOccupiedBy(PlayerCtrl player)
     {
-        OccupiedBy = player;
+        occupiedBy = player;
         //Debug.Log(player);
     }
 

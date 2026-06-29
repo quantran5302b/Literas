@@ -85,7 +85,10 @@ public class PlayerController : MonoBehaviour
         cellcu.CellRule.SetOccupiedBy(null);
         currentPos = nextPos;
 
-        
+        if (GoalManager.Instance.CheckWin())
+        {
+            Debug.Log("WIN");
+        }
 
     }
     private void LoadPlayerCtrl()

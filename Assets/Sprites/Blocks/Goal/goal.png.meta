@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 06a43ce54fa0d7c4ca7cc753c808919f
+guid: 0d6abb6fc7b2515458529cfec52193bb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -149,32 +149,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cellModel_0
+      name: goal_5
       rect:
         serializedVersion: 2
-        x: 12
-        y: 25
-        width: 77
-        height: 77
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 230887db68bae1640a7f6acac122c6e5
-      internalID: -220722672
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cellModel_1
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 32
+        x: 70
+        y: 176
         width: 70
         height: 69
       alignment: 0
@@ -184,8 +163,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca08918c46d33c34488499dd6e708e5d
-      internalID: 1326144170
+      spriteID: 96c878315b23d8a49b1f2ee8b2b43f5e
+      internalID: -756933586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goal_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 91
+        width: 70
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56580950ce9a7f347a0be41a236747ef
+      internalID: -1896032188
       vertices: []
       indices: 
       edges: []
@@ -201,8 +201,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cellModel_0: -220722672
-      cellModel_1: 1326144170
+      goal_0: 692096311
+      goal_1: 420557344
+      goal_10: -2007441516
+      goal_11: 1978057473
+      goal_12: 1321182049
+      goal_13: -1896032188
+      goal_2: 1694071200
+      goal_3: 2016043414
+      goal_4: 1728495096
+      goal_5: -756933586
+      goal_6: -482874314
+      goal_7: -1493320166
+      goal_8: 1513609658
+      goal_9: 1776423859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
