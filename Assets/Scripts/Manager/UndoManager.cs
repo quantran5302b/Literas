@@ -6,6 +6,7 @@ using UnityEngine;
 public class UndoManager : MonoBehaviour
 {
     public static UndoManager Instance;
+    private Stack<MoveData> history = new Stack<MoveData>();
     void Awake()
     {
         if (Instance == null)
@@ -17,19 +18,14 @@ public class UndoManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
-    private Stack<MoveData> history = new Stack<MoveData>();
-
     public void SaveMove(MoveData data)
     {
-
         history.Push(data);
     }
-
-    public MoveData Undo()
+    public void Undo()
     {
-        if (history.Count == 0)return null;
-        return history.Pop();
+        if (history.Count == 0)return;
+        MoveData data = history.Pop();
+        data.player.UndoMove(data.previousPos);
     }
 }

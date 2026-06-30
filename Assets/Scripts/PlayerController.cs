@@ -32,17 +32,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)) Move(Vector2Int.up);
-        if (Input.GetKeyDown(KeyCode.S)) Move(Vector2Int.down);
-        if (Input.GetKeyDown(KeyCode.A)) Move(Vector2Int.left);
-        if (Input.GetKeyDown(KeyCode.D)) Move(Vector2Int.right);
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Undo();
-        }
+        //if (Input.GetKeyDown(KeyCode.W)) Move(Vector2Int.up);
+        //if (Input.GetKeyDown(KeyCode.S)) Move(Vector2Int.down);
+        //if (Input.GetKeyDown(KeyCode.A)) Move(Vector2Int.left);
+        //if (Input.GetKeyDown(KeyCode.D)) Move(Vector2Int.right);
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    Undo();
+        //}
     }
 
-    void Move(Vector2Int dir)
+   public void Move(Vector2Int dir)
     {
         Vector2Int targetPos = currentPos + dir;
 
@@ -54,8 +54,8 @@ public class PlayerController : MonoBehaviour
    
         SnapCell(targetPos);
        
-        if (cellRule != null)
-            cellRule.OnEnter(this);
+        //if (cellRule != null)
+        //    cellRule.OnEnter(this);
     }
 
     private void SnapCell(Vector2Int pos)
@@ -76,18 +76,18 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        transform.position = cellCtrl.gameObject.transform.position;
+        transform.parent.position = cellCtrl.gameObject.transform.position;
         PlayerCtrl.PlayerModel.ChangeColorCell(cellCtrl, PlayerCtrl.PlayerModel.CenterColor);
         cellCtrl.CellRule.SetOccupiedBy(PlayerCtrl);
 
         if (nextPos == currentPos) return;
-        CellCtrl cellcu = grid.GetCell(currentPos);
-        cellcu.CellRule.SetOccupiedBy(null);
+        CellCtrl oldCell = grid.GetCell(currentPos);
+        oldCell.CellRule.SetOccupiedBy(null);
         currentPos = nextPos;
 
         if (GoalManager.Instance.CheckWin())
         {
-            Debug.Log("WIN");
+            Debug.Log("win");
         }
 
     }
@@ -97,19 +97,26 @@ public class PlayerController : MonoBehaviour
         this.playerCtrl = GetComponentInParent<PlayerCtrl>();
     }
 
-    private void Undo()
+    //public void Undo()
+    //{
+    //    //MoveData data = UndoManager.Instance.Undo();
+
+    //    if (data == null)
+    //        return;
+
+    //    isUndoing = true;
+
+    //    data.player.SnapCell(data.previousPos);
+
+    //    isUndoing = false;
+    //}
+    public void UndoMove(Vector2Int pos)
     {
-        MoveData data = UndoManager.Instance.Undo();
-
-        if (data == null)
-            return;
-
         isUndoing = true;
-
-        data.player.SnapCell(data.previousPos);
-
+        SnapCell(pos);
         isUndoing = false;
     }
+
 
 
 }

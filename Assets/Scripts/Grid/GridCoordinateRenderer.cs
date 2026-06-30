@@ -22,8 +22,6 @@ public class GridCoordinateRenderer : MonoBehaviour
 
                 TextMeshPro text = textObj.GetComponent<TextMeshPro>();
                 text.text = $"({x},{y})";
-
-                // Đẩy lên trên một chút để không bị trùng object
                 textObj.transform.position += new Vector3(0, 0, -1);
             }
         }
