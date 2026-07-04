@@ -61,7 +61,9 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             UndoManager.Instance.Undo();
+
         }
+
     }
 
 
@@ -88,10 +90,18 @@ public class SelectionManager : MonoBehaviour
 
     private void MoveSelected(Vector2Int dir)
     {
+        //foreach (PlayerCtrl player in selectedPlayers)
+        //{
+        //    player.PlayerController.Move(dir);
+        //}
+        UndoManager.Instance.BeginTurn();
+
         foreach (PlayerCtrl player in selectedPlayers)
         {
             player.PlayerController.Move(dir);
         }
+
+        UndoManager.Instance.EndTurn();
     }
 
 }

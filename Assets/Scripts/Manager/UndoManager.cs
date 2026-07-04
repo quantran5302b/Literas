@@ -6,7 +6,12 @@ using UnityEngine;
 public class UndoManager : MonoBehaviour
 {
     public static UndoManager Instance;
-    private Stack<MoveData> history = new Stack<MoveData>();
+    //private Stack<MoveData> history = new Stack<MoveData>();
+
+
+    private Stack<TurnData> history = new Stack<TurnData>();
+
+    private TurnData currentTurn;
     void Awake()
     {
         if (Instance == null)
@@ -18,14 +23,47 @@ public class UndoManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SaveMove(MoveData data)
+    public void AddMove(MoveData move)
     {
-        history.Push(data);
+        currentTurn.AddMove(move);
     }
+
+    public void BeginTurn()
+    {
+        currentTurn = new TurnData();
+    }
+    public void EndTurn()
+    {
+        if (currentTurn.moves.Count == 0)
+            return;
+
+        history.Push(currentTurn);
+
+        currentTurn = null;
+    }
+
+    //public void SaveMove(MoveData data)
+    //{
+    //    history.Push(data);
+    //}
+    //public void Undo()
+    //{
+    //    if (history.Count == 0) return;
+    //    MoveData data = history.Pop();
+    //    data.player.UndoMove(data.previousPos);
+    //}
+
     public void Undo()
     {
-        if (history.Count == 0)return;
-        MoveData data = history.Pop();
-        data.player.UndoMove(data.previousPos);
+        if (history.Count == 0) return;
+        TurnData turn = history.Pop();
+        //data.player.UndoMove(data.previousPos);
+
+        for (int i = turn.moves.Count - 1; i >= 0; i--)
+        {
+            MoveData move = turn.moves[i];
+
+            move.player.UndoMove(move.previousPos);
+        }
     }
 }
