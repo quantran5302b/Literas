@@ -6,8 +6,6 @@ using UnityEngine;
 public class UndoManager : MonoBehaviour
 {
     public static UndoManager Instance;
-    //private Stack<MoveData> history = new Stack<MoveData>();
-
 
     private Stack<TurnData> history = new Stack<TurnData>();
 
@@ -23,9 +21,9 @@ public class UndoManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void AddMove(MoveData move)
+    public void AddData(UndoData data)
     {
-        currentTurn.AddMove(move);
+        currentTurn.AddData(data);
     }
 
     public void BeginTurn()
@@ -34,7 +32,7 @@ public class UndoManager : MonoBehaviour
     }
     public void EndTurn()
     {
-        if (currentTurn.moves.Count == 0)
+        if (currentTurn.datas.Count == 0)
             return;
 
         history.Push(currentTurn);
@@ -42,28 +40,15 @@ public class UndoManager : MonoBehaviour
         currentTurn = null;
     }
 
-    //public void SaveMove(MoveData data)
-    //{
-    //    history.Push(data);
-    //}
-    //public void Undo()
-    //{
-    //    if (history.Count == 0) return;
-    //    MoveData data = history.Pop();
-    //    data.player.UndoMove(data.previousPos);
-    //}
+
 
     public void Undo()
     {
         if (history.Count == 0) return;
         TurnData turn = history.Pop();
-        //data.player.UndoMove(data.previousPos);
-
-        for (int i = turn.moves.Count - 1; i >= 0; i--)
+        for (int i = turn.datas.Count - 1; i >= 0; i--)
         {
-            MoveData move = turn.moves[i];
-
-            move.player.UndoMove(move.previousPos);
+            turn.datas[i].Undo();
         }
     }
 }

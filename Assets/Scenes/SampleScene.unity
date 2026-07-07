@@ -245,7 +245,7 @@ MonoBehaviour:
   model_3: {fileID: 1201993629}
   borderColor: 2
   middleColor: 1
-  centerColor: 0
+  centerColor: 1
   playerCtrl: {fileID: 0}
 --- !u!1 &85903269
 GameObject:
@@ -417,7 +417,7 @@ MonoBehaviour:
   model_3: {fileID: 1125810089}
   borderColor: 2
   middleColor: 1
-  centerColor: 0
+  centerColor: 1
   playerCtrl: {fileID: 0}
 --- !u!212 &181223399
 SpriteRenderer:

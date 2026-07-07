@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TurnData : MonoBehaviour
 {
-    public List<MoveData> moves = new List<MoveData>();
+    public List<UndoData> datas = new List<UndoData>();
 
-    public void AddMove(MoveData move)
+    public void AddData(UndoData data)
     {
-        moves.Add(move);
+        datas.Add(data);
     }
 }

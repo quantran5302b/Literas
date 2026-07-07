@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
                 new MoveData(this, currentPos);
 
             //UndoManager.Instance.SaveMove(data);
-            UndoManager.Instance.AddMove(data);
+            UndoManager.Instance.AddData(data);
         }
 
 
