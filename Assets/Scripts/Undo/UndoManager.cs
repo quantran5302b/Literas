@@ -9,7 +9,7 @@ public class UndoManager : MonoBehaviour
 
     private Stack<TurnData> history = new Stack<TurnData>();
 
-    private TurnData currentTurn;
+    private TurnData currentTurn =  new TurnData();
     void Awake()
     {
         if (Instance == null)

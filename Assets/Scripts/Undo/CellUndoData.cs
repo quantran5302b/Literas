@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellData : UndoData
+public class CellUndoData : UndoData
 {
     public CellModel cell;
     public EnumColor previousColor;
 
-    public CellData(CellModel cell, EnumColor previousColor)
+    public CellUndoData(CellModel cell, EnumColor previousColor)
     {
         this.cell = cell;
         this.previousColor = previousColor;
@@ -15,6 +15,7 @@ public class CellData : UndoData
 
     public void Undo()
     {
-        cell.SetColor(previousColor);
+        Debug.Log(previousColor.ToString());
+        cell.RestoreColor(previousColor);
     }
 }

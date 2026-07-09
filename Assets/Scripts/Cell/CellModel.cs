@@ -14,24 +14,25 @@ public class CellModel : MonoBehaviour
     private void Awake()
     {
         this.LoadModel();
-        //SetColor(color);
 
     }
     private void Start()
     {
+        isUndoing = true;
+
         ApplyColor();
-    }
-    private void Update()
-    {
-        //SetColor(color);
+
+        isUndoing = false;
+
     }
     public void SetColor(EnumColor newColor)
     {
         if (color == newColor) return;
+        if (newColor == EnumColor.Gray) return;
         if (!isUndoing)
         {
-            CellData data = new CellData(this, newColor);
-            UndoManager.Instance.AddData(data) ;
+            CellUndoData data = new CellUndoData(this, color);
+            UndoManager.Instance.AddData(data);
         }
         color = newColor;
         ApplyColor();
@@ -53,5 +54,9 @@ public class CellModel : MonoBehaviour
     {
         if (model) return;
         this.model = GetComponent<SpriteRenderer>();
+    }
+    public void ChangeByPlayer(PlayerCtrl player)
+    {
+        SetColor(player.PlayerModel.CenterColor);
     }
 }

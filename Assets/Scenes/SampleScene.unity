@@ -417,7 +417,7 @@ MonoBehaviour:
   model_3: {fileID: 1125810089}
   borderColor: 2
   middleColor: 1
-  centerColor: 1
+  centerColor: 0
   playerCtrl: {fileID: 0}
 --- !u!212 &181223399
 SpriteRenderer:

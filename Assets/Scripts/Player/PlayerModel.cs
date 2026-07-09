@@ -41,11 +41,11 @@ public class PlayerModel : MonoBehaviour
                color == middleColor || 
                color == centerColor;
     }
-    public void ChangeColorCell(CellCtrl cell,EnumColor color)
-    {
-        if (color == EnumColor.Gray) return;
-        CellModel model = cell.CellModel;
-        model.SetColor(color);
-    }
+    //public void ChangeColorCell(CellCtrl cell,EnumColor color)
+    //{
+    //    if (color == EnumColor.Gray) return;
+    //    CellModel model = cell.CellModel;
+    //    model.SetColor(color);
+    //}
 
 }

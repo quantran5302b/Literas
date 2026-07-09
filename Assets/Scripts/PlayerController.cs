@@ -69,8 +69,8 @@ public class PlayerController : MonoBehaviour
         }
         if (!isUndoing)
         {
-            MoveData data =
-                new MoveData(this, currentPos);
+            PlayerUndoData data =
+                new PlayerUndoData(this, currentPos);
 
             //UndoManager.Instance.SaveMove(data);
             UndoManager.Instance.AddData(data);
@@ -78,9 +78,11 @@ public class PlayerController : MonoBehaviour
 
 
         transform.parent.position = cellCtrl.gameObject.transform.position;
-        PlayerCtrl.PlayerModel.ChangeColorCell(cellCtrl, PlayerCtrl.PlayerModel.CenterColor);
+        //PlayerCtrl.PlayerModel.ChangeColorCell(cellCtrl, PlayerCtrl.PlayerModel.CenterColor);
+        /////
+        cellCtrl.CellModel.ChangeByPlayer(playerCtrl);
+        //--------------------------
         cellCtrl.CellRule.SetOccupiedBy(PlayerCtrl);
-
         if (nextPos == currentPos) return;
         CellCtrl oldCell = grid.GetCell(currentPos);
         oldCell.CellRule.SetOccupiedBy(null);
