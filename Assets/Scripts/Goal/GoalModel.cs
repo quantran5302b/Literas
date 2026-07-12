@@ -6,7 +6,6 @@ public class GoalModel : MonoBehaviour
 {
     public Vector2Int currentPos;
 
-    public GridManager grid;
 
     private void Start()
     {
@@ -15,7 +14,7 @@ public class GoalModel : MonoBehaviour
 
     private void SnapCell(Vector2Int pos)
     {
-       CellCtrl cellCtrl = grid.GetCell(pos);
+       CellCtrl cellCtrl = GridManager.Instance.GetCell(pos);
         if (cellCtrl == null)
         {
             Debug.LogError("Cell null");

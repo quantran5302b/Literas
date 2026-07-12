@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class SelectionManager : MonoBehaviour
 {
     public static SelectionManager Instance;
 
-    [SerializeField] private List<PlayerCtrl> players = new();
+    private List<PlayerCtrl> players = new();
 
     private List<PlayerCtrl> selectedPlayers = new();
 
-    [SerializeField] private int playerMoveCount = 1;
+    private int playerMoveCount;
 
     private int currentIndex = 0;
 
@@ -27,7 +28,7 @@ public class SelectionManager : MonoBehaviour
 
     private void Start()
     {
-        SelectSinglePlayer(0);
+        //SelectSinglePlayer(0);
     }
 
     private void Update()
@@ -90,10 +91,8 @@ public class SelectionManager : MonoBehaviour
 
     private void MoveSelected(Vector2Int dir)
     {
-        //foreach (PlayerCtrl player in selectedPlayers)
-        //{
-        //    player.PlayerController.Move(dir);
-        //}
+        if (!CanGroupMove(dir))
+            return;
         UndoManager.Instance.BeginTurn();
 
         foreach (PlayerCtrl player in selectedPlayers)
@@ -102,6 +101,45 @@ public class SelectionManager : MonoBehaviour
         }
 
         UndoManager.Instance.EndTurn();
+    }
+
+
+    public bool CanGroupMove(Vector2Int dir)
+    {
+        foreach (PlayerCtrl player in selectedPlayers)
+        {
+            Vector2Int targetPos = dir + player.PlayerController.currentPos;
+
+            if (!GridManager.Instance.IsValid(targetPos)) return false;
+            CellCtrl cellCtrl = GridManager.Instance.GetCell(targetPos);
+            CellRule cellRule = cellCtrl.CellRule;
+            if (cellRule != null && !cellRule.CanMove(player.PlayerController)) return false;
+
+
+            CellCtrl target = GridManager.Instance.GetCell(targetPos);
+              PlayerCtrl occupied = target.CellRule.OccupiedBy;
+
+            if (occupied == null)
+                continue;
+
+            if (IsSelected(occupied))
+                continue;
+
+            return false;
+        }
+
+        return true;
+    }
+    private bool IsSelected(PlayerCtrl player)
+    {
+        return selectedPlayers.Contains(player);
+    }
+
+    public void Initialize(List<PlayerCtrl> players, int count)
+    {
+        this.playerMoveCount = count;
+        this.players = players;
+        SelectSinglePlayer(0);
     }
 
 }

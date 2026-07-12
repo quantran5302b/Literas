@@ -18,7 +18,7 @@ public class GoalManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private List<GoalCtrl> goals = new();
+    private List<GoalCtrl> goals = new();
 
     public bool CheckWin()
     {
@@ -31,5 +31,9 @@ public class GoalManager : MonoBehaviour
         }
 
         return true;
+    }
+    public void Initialize(List<GoalCtrl> goals)
+    {
+        this.goals = goals;
     }
 }

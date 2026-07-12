@@ -47,5 +47,11 @@ public class PlayerModel : MonoBehaviour
     //    CellModel model = cell.CellModel;
     //    model.SetColor(color);
     //}
-
+    public void SetColor(EnumColor border, EnumColor middle, EnumColor center)
+    {
+        borderColor = border;
+        middleColor = middle;
+        centerColor = center;
+        SetColorModel();
+    }
 }

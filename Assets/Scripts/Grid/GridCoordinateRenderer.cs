@@ -9,6 +9,7 @@ public class GridCoordinateRenderer : MonoBehaviour
 
     void Start()
     {
+        grid = GridManager.Instance;
         if (!show) return;
 
         for (int x = 0; x < grid.width; x++)

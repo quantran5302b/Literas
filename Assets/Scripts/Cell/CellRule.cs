@@ -6,7 +6,6 @@ using UnityEngine;
 public class CellRule : MonoBehaviour
 {
     public Vector2Int gridPos;
-    public GridManager grid;
     [SerializeField]private  PlayerCtrl playerCtrl;
 
     [SerializeField] private CellCtrl cellCtrl;
@@ -42,10 +41,10 @@ public class CellRule : MonoBehaviour
     }
     private bool CheckCanMove(PlayerController player)
     {
-        if (OccupiedBy != null )
-        {
-            return false;
-        }
+        //if (OccupiedBy != null )
+        //{
+        //    return false;
+        //}
         if (cellCtrl.CellModel.Color == EnumColor.Gray)
         {
             return true;

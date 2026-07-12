@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class GoalCtrl : MonoBehaviour
 {
-    [SerializeField] private CellCtrl cellCtrl;
+    private CellCtrl cellCtrl;
 
     public CellCtrl CellCtrl => cellCtrl;
 
     public Vector2Int currentPos;
 
-    public GridManager grid;
+    //public GridManager grid;
 
     private void Start()
     {
-        this.SnapCell(currentPos);
+        //this.SnapCell(currentPos);
     }
 
     public bool IsCompleted()
@@ -22,9 +22,9 @@ public class GoalCtrl : MonoBehaviour
         return cellCtrl.CellRule.OccupiedBy != null;
     }
 
-    private void SnapCell(Vector2Int pos)
+    public void SnapCell(Vector2Int pos)
     {
-         cellCtrl = grid.GetCell(pos);
+         cellCtrl = GridManager.Instance.GetCell(pos);
         if (cellCtrl == null)
         {
             Debug.LogError("Cell null");

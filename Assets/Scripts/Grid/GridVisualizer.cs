@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class GridVisualizer : MonoBehaviour
 {
-    public GridManager grid;
+    private GridManager grid;
 
     private LineRenderer line;
 
@@ -12,7 +12,7 @@ public class GridVisualizer : MonoBehaviour
         line = GetComponent<LineRenderer>();
         line.material = new Material(Shader.Find("Sprites/Default"));
         line.widthMultiplier = 0.05f;
-
+        grid = GridManager.Instance;
         DrawGrid();
     }
 
