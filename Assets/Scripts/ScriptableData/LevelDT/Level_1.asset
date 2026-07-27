@@ -19,12 +19,24 @@ MonoBehaviour:
   - position: {x: 1, y: 0}
     color: 2
   - position: {x: 0, y: 0}
-    color: 1
+    color: 3
   players:
-  - position: {x: 2, y: 1}
-    borderColor: 1
+  - position: {x: 4, y: 4}
+    borderColor: 0
+    middleColor: 0
+    centerColor: 1
+  - position: {x: 1, y: 4}
+    borderColor: 0
     middleColor: 2
     centerColor: 1
-  playerMoveCount: 1
+  - position: {x: 5, y: 4}
+    borderColor: 0
+    middleColor: 2
+    centerColor: 1
+  - position: {x: 6, y: 4}
+    borderColor: 0
+    middleColor: 2
+    centerColor: 1
+  playerMoveCount: 2
   goals:
   - position: {x: 1, y: 1}

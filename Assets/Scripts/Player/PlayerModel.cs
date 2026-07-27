@@ -7,6 +7,7 @@ public class PlayerModel : MonoBehaviour
     [SerializeField] private SpriteRenderer model_1;
     [SerializeField] private SpriteRenderer model_2;
     [SerializeField] private SpriteRenderer model_3;
+    [SerializeField] private SpriteRenderer model_Light;
 
     [SerializeField] private EnumColor borderColor; 
     [SerializeField] private EnumColor middleColor;
@@ -53,5 +54,9 @@ public class PlayerModel : MonoBehaviour
         middleColor = middle;
         centerColor = center;
         SetColorModel();
+    }
+    public void PlayerLight(bool check)
+    {
+        model_Light.gameObject.SetActive(check);
     }
 }

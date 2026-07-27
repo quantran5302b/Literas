@@ -152,8 +152,8 @@ TextureImporter:
       name: blockplayer_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 30
+        x: 8
+        y: 26
         width: 77
         height: 77
       alignment: 0
@@ -173,8 +173,8 @@ TextureImporter:
       name: blockplayer_1
       rect:
         serializedVersion: 2
-        x: 98
-        y: 34
+        x: 92
+        y: 30
         width: 69
         height: 69
       alignment: 0
@@ -194,8 +194,8 @@ TextureImporter:
       name: blockplayer_2
       rect:
         serializedVersion: 2
-        x: 182
-        y: 54
+        x: 176
+        y: 50
         width: 31
         height: 31
       alignment: 0
@@ -207,6 +207,27 @@ TextureImporter:
       bones: []
       spriteID: c2d9e97fc60c046428b37037123d6100
       internalID: 1054714699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blockplayer_3
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 24
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a6cf9c5d0135494c9960036f2c26589
+      internalID: 852394858
       vertices: []
       indices: 
       edges: []
@@ -225,6 +246,7 @@ TextureImporter:
       blockplayer_0: 1303207532
       blockplayer_1: -881767371
       blockplayer_2: 1054714699
+      blockplayer_3: 852394858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

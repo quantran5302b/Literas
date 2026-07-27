@@ -1,4 +1,6 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +17,10 @@ public class PlayerController : MonoBehaviour
 
     private bool isUndoing;
 
+
+    public Vector2Int targetPos;
+    public bool canMove;
+
     private void Awake()
     {
         this.LoadPlayerCtrl();
@@ -29,18 +35,62 @@ public class PlayerController : MonoBehaviour
         isUndoing = false;
     }
 
-   public void Move(Vector2Int dir)
+   //public void Move(Vector2Int dir)
+   // {
+   //     Vector2Int targetPos = currentPos + dir;
+   //     SnapCell(targetPos);
+   // }
+
+    public void PrepareMove(Vector2Int dir)
     {
-        Vector2Int targetPos = currentPos + dir;
+        targetPos = currentPos + dir;
+        canMove = false;
+    }
 
-        //if (!grid.IsValid(targetPos)) return;
-        // cellCtrl = grid.GetCell(targetPos);
-        //CellRule cellRule = cellCtrl.CellRule;
-        //if (cellRule != null && !cellRule.CanMove(this)) return;
 
+    public void CheckMove()
+    {
+        if (!grid.IsValid(targetPos))
+        {
+            canMove = false;
+            return;
+        }
+
+        CellCtrl targetCell = grid.GetCell(targetPos);
+
+        CellRule rule = targetCell.CellRule;
+
+        if (rule != null && !rule.CanMove(this))
+        {
+            canMove = false;
+            return;
+        }
+        PlayerCtrl occupied = targetCell.CellRule.OccupiedBy;
+        if(occupied != null)
+        {
+            if(occupied.PlayerController.canMove != true){
+                canMove = false;
+                return;
+            } 
+            //else
+            //{
+
+            //}
+            //    canMove = false;
+            //return;
+        }
+
+        canMove = true;
+    }
+
+    public void ExecuteMove()
+    {
+        if (!canMove)
+            return;
 
         SnapCell(targetPos);
     }
+
 
     private void SnapCell(Vector2Int pos)
     {

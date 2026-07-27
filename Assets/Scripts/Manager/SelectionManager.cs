@@ -1,5 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 public class SelectionManager : MonoBehaviour
@@ -76,34 +78,56 @@ public class SelectionManager : MonoBehaviour
             currentIndex = 0;
         }
         SelectSinglePlayer(currentIndex);
+      
     }
-
     private void SelectSinglePlayer(int index)
     {
+        this.ReturnCanMove();
         selectedPlayers.Clear();
         for (int i = 0; i < playerMoveCount; i++)
         {
              index = (currentIndex + i) % players.Count;
             selectedPlayers.Add(players[index]);
+            players[index].PlayerModel.PlayerLight(true);
         }
     }
-
-
     private void MoveSelected(Vector2Int dir)
     {
-        if (!CanGroupMove(dir))
-            return;
         UndoManager.Instance.BeginTurn();
 
-        foreach (PlayerCtrl player in selectedPlayers)
+        List<PlayerCtrl> moveOrder = GetMoveOrder(dir);
+        foreach(PlayerCtrl a in moveOrder)
         {
-            player.PlayerController.Move(dir);
+            a.PlayerController.canMove = false;
+        }
+        // Phase 1: Chuẩn bị
+        foreach (PlayerCtrl player in moveOrder)
+        {
+            player.PlayerController.PrepareMove(dir);
+        }
+
+        // Phase 2: Kiểm tra
+        foreach (PlayerCtrl player in moveOrder)
+        {
+            player.PlayerController.CheckMove();
+        }
+
+        // Phase 3: Thực thi
+        foreach (PlayerCtrl player in moveOrder)
+        {
+            player.PlayerController.ExecuteMove();
         }
 
         UndoManager.Instance.EndTurn();
     }
 
-
+    public void Initialize(List<PlayerCtrl> players, int count)
+    {
+        this.playerMoveCount = count;
+        this.players = players;
+        SelectSinglePlayer(0);
+    }
+   
     public bool CanGroupMove(Vector2Int dir)
     {
         foreach (PlayerCtrl player in selectedPlayers)
@@ -117,7 +141,7 @@ public class SelectionManager : MonoBehaviour
 
 
             CellCtrl target = GridManager.Instance.GetCell(targetPos);
-              PlayerCtrl occupied = target.CellRule.OccupiedBy;
+            PlayerCtrl occupied = target.CellRule.OccupiedBy;
 
             if (occupied == null)
                 continue;
@@ -134,12 +158,43 @@ public class SelectionManager : MonoBehaviour
     {
         return selectedPlayers.Contains(player);
     }
-
-    public void Initialize(List<PlayerCtrl> players, int count)
+    private List<PlayerCtrl> GetMoveOrder(Vector2Int dir)
     {
-        this.playerMoveCount = count;
-        this.players = players;
-        SelectSinglePlayer(0);
-    }
+        foreach (PlayerCtrl a in selectedPlayers)
+        {
+            a.PlayerController.canMove = false;
+        }
+        List<PlayerCtrl> moveOrder = new List<PlayerCtrl>(selectedPlayers);
 
+        if (dir == Vector2Int.up)
+        {
+            moveOrder.Sort((a, b) =>
+                b.PlayerController.currentPos.y.CompareTo(a.PlayerController.currentPos.y));
+        }
+        else if (dir == Vector2Int.down)
+        {
+            moveOrder.Sort((a, b) =>
+                a.PlayerController.currentPos.y.CompareTo(b.PlayerController.currentPos.y));
+        }
+        else if (dir == Vector2Int.left)
+        {
+            moveOrder.Sort((a, b) =>
+                a.PlayerController.currentPos.x.CompareTo(b.PlayerController.currentPos.x));
+        }
+        else if (dir == Vector2Int.right)
+        {
+            moveOrder.Sort((a, b) =>
+                b.PlayerController.currentPos.x.CompareTo(a.PlayerController.currentPos.x));
+        }
+
+        return moveOrder;
+    }
+    private void ReturnCanMove()
+    {
+        foreach (PlayerCtrl a in players)
+        {
+            a.PlayerController.canMove = false;
+            a.PlayerModel.PlayerLight(false);
+        }
+    }
 }

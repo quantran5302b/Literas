@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -981181525
-  m_SortingLayer: 1
+  m_SortingLayerID: -1086763247
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -756933586, guid: 0d6abb6fc7b2515458529cfec52193bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -154,8 +154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -981181525
-  m_SortingLayer: 1
+  m_SortingLayerID: -1086763247
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1896032188, guid: 0d6abb6fc7b2515458529cfec52193bb, type: 3}
   m_Color: {r: 0.5058824, g: 0.5921569, b: 0.5882353, a: 1}
@@ -194,7 +194,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1551018001827581058}
@@ -247,4 +247,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPos: {x: 2, y: 2}
-  grid: {fileID: 7320894662697481142, guid: 3a3ff94ae61b13b4a8d1a33db3e78648, type: 3}
